@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="kursach.UserControls.ServiceCardControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:kursach.UserControls"
+              xmlns:viewmodel="clr-namespace:kursach.ViewModel"
+             mc:Ignorable="d" 
+             Background="Transparent" Width="460" Height="550">
+
+    <!-- Округленная обертка с белой обводкой -->
+    <Border CornerRadius="20" Background="LightSteelBlue" BorderBrush="White" BorderThickness="2" ClipToBounds="True">
+        <Grid>
+            <!-- Заголовок -->
+            <TextBlock Text="{Binding Title}" 
+                       Height="35" 
+                       Margin="25,355,25,140" 
+                       TextAlignment="Center" 
+                       FontSize="26" 
+                       Background="AliceBlue" 
+                       Foreground="Black"/>
+
+            <!-- Изображение -->
+            <Grid Margin="0,50,0,0">
+                <Image Source="{Binding ImageUrl}" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Top" Height="250">
+                    <Image.Clip>
+                        <RectangleGeometry Rect="0,0,460,250" RadiusX="20" RadiusY="20"/>
+                    </Image.Clip>
+                </Image>
+            </Grid>
+
+            <Border CornerRadius="20" BorderBrush="AliceBlue"
+                    BorderThickness="1" >
+                <TextBlock Text="{Binding Description}" 
+             Margin="0,420,0,55" 
+             TextWrapping="Wrap" 
+             TextAlignment="Center"  
+             FontSize="22" 
+             Background="Lavender" 
+             Foreground="Black" 
+             TextTrimming="CharacterEllipsis"/>
+            </Border>
+            <!-- Описание -->
+          
+
+            <!-- Кнопка -->
+            <Button Margin="100,500,100,10"
+        Content="Арендовать"
+        Background="MediumPurple"
+        FontSize="20"
+        Foreground="White"
+        BorderThickness="0"
+        Cursor="Hand"
+        Click="Button_Click"
+        >
+
+
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="MediumPurple" 
+               BorderBrush="White" 
+               BorderThickness="2" 
+               CornerRadius="20" 
+               >
+                            <ContentPresenter HorizontalAlignment="Center" 
+                            VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+        </Grid>
+    </Border>
+</UserControl>

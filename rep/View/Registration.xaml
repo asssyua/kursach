@@ -1,0 +1,64 @@
+﻿<Window x:Class="kursach.View.Registration"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:kursach.View" xmlns:viewmodel="clr-namespace:kursach.ViewModel" 
+        mc:Ignorable="d"
+        Title="Регистрация" Height="450" Width="450"
+         WindowStartupLocation="CenterScreen">
+
+    <Window.DataContext>
+        <viewmodel:RegistrationViewModel/>
+    </Window.DataContext>
+
+    <Grid Background = "Lavender">
+       
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*" />
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+     
+
+        <Grid Grid.Row="0">
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25">Регистрация</TextBlock>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20">Логин: </TextBlock>
+            <TextBox Grid.Column="1" Width="150" Height="35" HorizontalAlignment="Left"></TextBox>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20">Пароль:</TextBlock>
+            <Button Width="20" Height="30" BorderThickness="0" Background="Transparent" Margin="155,33,40,33" Grid.Column="1">
+                <Image Source="Images/password.png"></Image>
+            </Button>
+            <TextBox Grid.Column="1" Width="150" Height="35" HorizontalAlignment="Left"></TextBox>
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <TextBlock HorizontalAlignment="Center" FontSize="15">Уже есть аккаунт?</TextBlock>
+            <Button  Width="40" Height="20" BorderThickness ="0" Background="Transparent" Command="{ Binding OpenAuthorizationWindowCommand }">
+                <TextBlock TextDecorations="Underline" >Войти</TextBlock>
+            </Button>
+        </Grid>
+
+        <Grid Grid.Row="4">
+            <Button VerticalAlignment="Top" Width="120" Height="40" FontSize="15" BorderThickness ="0" Background="MediumPurple" Foreground="Lavender">Создать аккаунт</Button>
+        </Grid>
+    </Grid>
+</Window>

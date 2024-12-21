@@ -1,0 +1,38 @@
+﻿<Window x:Class="kursach.View.AdminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:viewmodel="clr-namespace:kursach.ViewModel"
+        Title="Админ-панель" Height="600" Width="900">
+
+  
+
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+
+        <ListView ItemsSource="{Binding UserRequests}" SelectedItem="{Binding SelectedRequest}" 
+                  Grid.Column="0" Margin="10" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding UserFullName}" />
+                    <GridViewColumn Header="Email" DisplayMemberBinding="{Binding UserEmail}" />
+                    <GridViewColumn Header="Вместимость" DisplayMemberBinding="{Binding Card_Title}" />
+                    <GridViewColumn Header="Срок аренды" DisplayMemberBinding="{Binding RentalTime}" />
+                    <GridViewColumn Header="Статус" DisplayMemberBinding="{Binding StatusDisplay}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="10">
+            <Button Content="Одобрить заявку" Command="{Binding ApproveRequestCommand}" Margin="0,10" />
+            <Button Content="Отклонить заявку" Command="{Binding RejectRequestCommand}" Margin="0,10" />
+            <Button Content="Добавить квартиру" 
+        Command="{Binding OpenAddCardWindowCommand}" 
+       Margin="0,10"/>
+
+
+        </StackPanel>
+    </Grid>
+</Window>

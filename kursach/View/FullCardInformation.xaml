@@ -1,0 +1,70 @@
+﻿<Window x:Class="kursach.View.FullCardInformation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:viewmodel="clr-namespace:kursach.ViewModel"
+        Title="Full Card Information" Height="550" Width="900" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.Background>
+            <SolidColorBrush Color="Lavender"></SolidColorBrush>
+        </Grid.Background>
+
+        <TextBlock Text="{Binding Title}" FontSize="20" FontWeight="Bold" Margin="0,30" TextAlignment="Center" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+
+        <TextBlock Text="{Binding Description}" Margin="200,62,200,394" FontSize="18" TextWrapping="Wrap"/>
+
+        <Grid>
+
+            <Button Content="❮" Width="40" Height="40" HorizontalAlignment="Left" VerticalAlignment="Center"
+        Command="{Binding PrevImageCommand}">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="Transparent" BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <Image Source="{Binding CurrentImage}" Stretch="UniformToFill" Margin="54,145,550,155"/>
+
+            <Button Content="❯" Width="40" Height="40" HorizontalAlignment="Right" VerticalAlignment="Top"
+        Command="{Binding NextImageCommand}" Margin="0,242,492,0">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="Transparent" BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </Grid>
+        <TextBlock Text="{Binding Price, StringFormat='Цена: {0:C}'}" Margin="422,145,200,0" FontSize="20" VerticalAlignment="Top"/>
+
+        <TextBlock Text="{Binding RentalPeriod}" Margin="422,210,200,0" FontSize="20" VerticalAlignment="Top" Height="29"/>
+
+        <TextBlock Text="{Binding Location}" Margin="422,275,200,0" FontSize="20" VerticalAlignment="Top"/>
+
+        <Button Margin="312,446,312,34"
+        Content="Арендовать" 
+        FontSize="20" 
+        Foreground="White" 
+        BorderThickness="0" 
+        Cursor="Hand"
+        Click="Button_Click"
+                >
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="MediumPurple" 
+                    BorderBrush="White" 
+                    BorderThickness="2" 
+                    CornerRadius="20" 
+                    >
+                        <ContentPresenter HorizontalAlignment="Center" 
+                                 VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+    </Grid>
+</Window>

@@ -1,0 +1,48 @@
+﻿<Page x:Class="kursach.View.Pages.HomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:viewmodel="clr-namespace:kursach.ViewModel"
+      xmlns:usercontrol="clr-namespace:kursach.UserControls"
+      xmlns:local="clr-namespace:kursach.View"
+      mc:Ignorable="d"
+      Title="Home" >
+
+    <Page.DataContext>
+        <viewmodel:MainViewModel/>
+    </Page.DataContext>
+    <Page.Content>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1321*"/>
+                <ColumnDefinition Width="80*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <TextBlock  VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="45" Margin="3,120,0,0" Foreground="White" 
+                   FontFamily="Arial Black" Grid.ColumnSpan="2">"Надежность и комфорт в каждом квадратном метре!"</TextBlock>
+            <TextBox  TextAlignment="Left" Padding="20" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Width="900" Height="70" Margin="250,195,0,0" Opacity="0.85"/>
+            <Button Content="Поиск" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="1274,195,0,0" Height="70" Width="127" FontSize="30" Foreground="Lavender" Background="MediumPurple" Opacity="0.9" Grid.ColumnSpan="2"/>
+
+            <Grid Grid.ColumnSpan="2">
+                <ListBox ItemsSource="{Binding CardsInformation}"
+                     SelectedItem="{Binding SelectedCardInformation}"
+                     Background="Transparent"
+                     BorderThickness="0">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <usercontrol:ServiceCardControl/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                </ListBox>
+            </Grid>
+        </Grid>
+    </Page.Content>
+</Page>

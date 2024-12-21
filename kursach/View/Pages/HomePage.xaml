@@ -1,0 +1,99 @@
+﻿<Page x:Class="kursach.View.Pages.HomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:viewmodel="clr-namespace:kursach.ViewModel"
+      xmlns:usercontrol="clr-namespace:kursach.UserControls"
+      xmlns:local="clr-namespace:kursach.View"
+      xmlns:helpers="clr-namespace:kursach.Helpers"
+      mc:Ignorable="d"
+      Title="Haven" Height="750" Width="1536">
+    <Page.Resources>
+        <helpers:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+        <Style TargetType="Button">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="Indigo"/>
+        </Style>
+    </Page.Resources>
+    <Page.Content>
+        <Grid>
+            <Grid>
+
+                <Image Source="../Images/background.jpg" Stretch="UniformToFill" Opacity="0.85" 
+                       VerticalAlignment="Top" HorizontalAlignment="Stretch" 
+                        />
+            </Grid>
+           
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="36*" />
+                        <RowDefinition Height="67*" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock FontSize="44" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White"
+                               FontFamily="Arial Black" Margin="22,94,0,0" Grid.Row="1" Height="52" Width="1396">
+                        "Надежность и комфорт в каждом квадратном метре!"
+                    </TextBlock>
+
+                    <TextBox x:Name="input" Text="{Binding SearchQuery, UpdateSourceTrigger=PropertyChanged}" 
+                 TextAlignment="Left" Padding="20" FontSize="20" HorizontalAlignment="Left"
+                 VerticalAlignment="Top" Width="900" Height="70" Margin="250,195,0,0" 
+                 Opacity="0.85" Grid.Row="1"/>
+
+                    <Button x:Name="found" Content="Поиск" VerticalAlignment="Top" HorizontalAlignment="Left"
+                Margin="1274,195,0,0" Height="70" Width="127" FontSize="30" Foreground="Lavender"
+                Background="MediumPurple" Opacity="0.9" Grid.Row="1" Command="{Binding SearchCommand}" />
+
+                    <Grid Grid.Row="2" Width="1300" HorizontalAlignment="Center" Margin="0,60,0,0">
+                        <ListView Background="Transparent" ItemsSource="{Binding CardsInformation}" 
+          HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderThickness="0">
+
+                            <ListView.Resources>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ListViewItem">
+                                                <Border Background="{TemplateBinding Background}">
+                                                    <ContentPresenter />
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Setter Property="BorderBrush" Value="Transparent" />
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="Transparent" />
+                                            <Setter Property="BorderBrush" Value="Transparent" />
+                                        </Trigger>
+                                       
+                                    </Style.Triggers>
+                                </Style>
+                            </ListView.Resources>
+
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <UniformGrid Columns="2" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <usercontrol:ServiceCardControl Margin="0,50,0,0" RequestWindowOpened="RequestWindowOpenedHandler" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ListView>
+
+                    </Grid>
+                </Grid>
+            </ScrollViewer>
+            <Button Content="Админ-панель" Width="150" Height="40" Margin="1386,0,0,710" Background="Violet"
+ Command="{Binding OpenAdminWindowCommand}" Visibility="{Binding IsAdmin, Converter={StaticResource BoolToVisibilityConverter}}" />
+
+        </Grid>
+    </Page.Content>
+</Page>

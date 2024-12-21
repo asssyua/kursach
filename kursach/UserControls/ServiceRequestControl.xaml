@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="kursach.UserControls.ServiceRequestControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="Transparent" Width="460" Height="550">
+
+    <Border CornerRadius="20" Background="LightSteelBlue" BorderBrush="White" BorderThickness="2" ClipToBounds="True">
+        <Grid>
+            <!-- Заголовок -->
+            <TextBlock Text="{Binding Card_Title}" 
+                       Height="35" 
+                       Margin="25,355,25,140" 
+                       TextAlignment="Center" 
+                       FontSize="26" 
+                       Background="AliceBlue" 
+                       Foreground="Black"/>
+
+            <!-- Изображение -->
+            <Grid Margin="0,50,0,0">
+                <Image Source="{Binding Card_ImageUrl}" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Top" Height="250">
+                    <Image.Clip>
+                        <RectangleGeometry Rect="0,0,460,250" RadiusX="20" RadiusY="20"/>
+                    </Image.Clip>
+                </Image>
+            </Grid>
+
+            <!-- Описание -->
+            <Border CornerRadius="20" BorderBrush="AliceBlue" BorderThickness="1">
+                <TextBlock Text="{Binding Card_Description}" 
+                           Margin="0,420,0,55" 
+                           TextWrapping="Wrap" 
+                           TextAlignment="Center"  
+                           FontSize="22" 
+                           Background="Lavender" 
+                           Foreground="Black" 
+                           TextTrimming="CharacterEllipsis"/>
+            </Border>
+
+            <!-- Пустой блок (на будущее) -->
+            <TextBlock Text="{Binding StatusDisplay}"
+                       FontSize="18" 
+                       Background="MediumPurple" 
+                       Width="170" 
+                       Height="40" 
+                       HorizontalAlignment="Center" 
+                       VerticalAlignment="Bottom" 
+                       Margin="0,0,0,10"
+                       TextAlignment="Center"
+                       Foreground="White"/>
+        </Grid>
+    </Border>
+</UserControl>
